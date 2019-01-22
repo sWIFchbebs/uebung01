@@ -5,10 +5,7 @@ import java.util.NoSuchElementException;
 class CharStackImpl implements CharStack {
     private CharElement head;
 
-    //private char[] cs;
-
-    //public CharStackImpl() { cs = new char[0]; }
-
+    @Override
     public void push(char c){
         if (head == null) {
             head = new CharElement(c,null);
@@ -21,13 +18,9 @@ class CharStackImpl implements CharStack {
         }
 
         ct.next = new CharElement(c,null);
-
-        /**char[] neu = new char [cs.length + 1];
-        System.arraycopy(cs, 0, neu,0,cs.length);
-        neu[cs.length] = c;
-        cs = neu;**/
     }
 
+    @Override
     public char pop(){
 
         if(size() == 0) {
@@ -36,10 +29,10 @@ class CharStackImpl implements CharStack {
             char r = head.value;
             head = head.next;
             return r;
-        }else{
+        }else {
             CharElement cr = head;
             CharElement rem = cr;
-            while(cr.next != null){
+            while (cr.next != null) {
                 rem = cr;
                 cr = cr.next;
             }
@@ -47,19 +40,9 @@ class CharStackImpl implements CharStack {
             rem.next = null;
             return r.value;
         }
-
-
-        /**if(cs.length > 0) {
-            char rc = cs[cs.length - 1];
-            char[] neu = new char[cs.length - 1];
-            System.arraycopy(cs, 0, neu, 0, cs.length - 1);
-            cs = neu;
-            return rc;
-        } else {
-            throw new NoSuchElementException("Stack is empty");
-        }**/
     }
 
+    @Override
     public int size(){
         int length = 1;
 
@@ -74,6 +57,5 @@ class CharStackImpl implements CharStack {
         }
 
         return length;
-        //return cs.length;
     }
 }
